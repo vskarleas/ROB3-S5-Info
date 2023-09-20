@@ -6,7 +6,9 @@ This repository is organised based on the different TPs that they need to be del
 
 ## Notes
 
-...
+Prof TP Nathan Maurice nathan.maurice@lip6.fr
+
+1. Check with the prof if exercise's 5 code is all right or not TP2
 
 ## Changelog
 

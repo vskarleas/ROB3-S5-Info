@@ -230,14 +230,22 @@ int random_number(int min, int max)
     int step = 10;
     int our_random;
 
-    srand(time(0)); //Ensures that we have a unique id for rand every single moment. It seeds the random number generator for the function rand used below
-
     for (int i = 0; i < step; i++)
     {
         our_random = (rand() % (max - min + 1)) + min;
     }
 
     return our_random;
+}
+
+/* Une autre version pour un random number qui prend le maximum 
+qu'on veut qu'il prend et pas aussi le minimum comme à la 
+fonction declaré ci-dessus*/
+int random_number_v2(int P)
+{
+    int num;
+    num = (rand() % P) + 1;
+    return num;
 }
 
 /* Trouve le nombre de chiffres 1 contenu dans un entier */

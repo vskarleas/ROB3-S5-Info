@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = hello exercise_3 exercise_4 exercise_5 exercise_6 exercise_7 exercise_8 exercise_10 exercise_10_v2 exercise_11 exercise_12 exercise_14 exercise_9 exercise_9_v2 exercise_13-2 exercise_13-1 exercise_13-3
+EXECUTABLES = hello exercise_3 exercise_4 exercise_5 exercise_6 exercise_7 exercise_8 exercise_10 exercise_10_v2 exercise_11 exercise_12 exercise_14 exercise_9 exercise_9_v2 exercise_13-2 exercise_13-1 exercise_13-3 exercise_15
 
 #############################################################################
 # definition des regles
@@ -151,6 +151,11 @@ exercise_13-1.o : exercise_13-1.c programmes.h
 	$(CC) -c $(COMPILOPTS) $<
 
 exercise_13-3.o : exercise_13-3.c programmes.h
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise_15.o : exercise_15.c programmes.h
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
@@ -271,6 +276,13 @@ exercise_13-1 : exercise_13-1.o programmes.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 exercise_13-3 : exercise_13-3.o programmes.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise_15 : exercise_15.o programmes.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

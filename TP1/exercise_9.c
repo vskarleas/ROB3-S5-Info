@@ -20,6 +20,8 @@ int main (int argc, char **argv){
     while (i < 10)
     {
         E = trunc(Nd/Nn)+1; //denominator of the new fraction
+        //emove digits after decimal point and return the modified decimal number
+
         printf("1 / %0.0lf\n\n", E);
 
         Nn = Nn * E - Nd; //New fraction 

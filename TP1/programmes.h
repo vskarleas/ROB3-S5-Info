@@ -51,6 +51,11 @@ int fibonacci(int n);
 /*Gives a rundom number between two values specified as arguments*/
 int random_number(int min, int max);
 
+/* Une autre version pour un random number qui prend le maximum 
+qu'on veut qu'il prend et pas aussi le minimum comme à la 
+fonction declaré ci-dessus*/
+int random_number_v2(int P);
+
 
 /* Trouve le nombre de chiffres 1 contenu dans un entier */
 int number_of_specified_number(int number, char *string);

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 
 #include "programmes.h"
 #define ENOUGH 256
@@ -13,7 +14,9 @@ int main(int argc, char **argv)
     printf("The goal of the game is to find the number that I have guessed. I will give you indication sif you are close or not to the number that I have guessed.\n\n");
     int luck, number, temp, counter;
     temp = -10; //Extra help variable
-    counter = 0; //
+    counter = 0; 
+
+    srand(time(0)); //Ensures that we have a unique id for rand every single moment. It seeds the random number generator for the function rand used below
     
     char name[ENOUGH];
     luck = random_number(1, 100); //A random number between 1 and 100
