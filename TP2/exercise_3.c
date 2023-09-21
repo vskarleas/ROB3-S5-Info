@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     srand(time(NULL));
     for (int i = 0; i <N; i++)
     {
-        number = random_number(P); //gives random numbers between 1 and P
+        number = random_number_with_minimum(1, P); //gives random numbers between 1 and P
         array[i] = number;
     }
 
@@ -52,12 +52,7 @@ int main(int argc, char **argv)
     }
 
     printf("AFTER the doublons treatment:\n");
-    //TRY TO MAKE IT A FUNCTION!!!
-    printf("[");
-    for (int i = 0; i < N; i++)
-    {
-        printf(" %d ",array[i] );
-    }
-    printf("]\n");
+    affiche_array(array, N);
+
     return 0;
 }

@@ -36,12 +36,7 @@ int main(int argc, char **argv)
     }
     printf("We did not found n on the generated array which was\n");
 
-    //TRY TO MAKE IT A FUNCTION!!!
-    printf("[");
-    for (int i = 0; i < N; i++)
-    {
-        printf(" %d ",array[i] );
-    }
-    printf("]\n");
+    affiche_array(array, N);
+    
     return 0;
 }

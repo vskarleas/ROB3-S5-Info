@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = exercise_1 exercise_2 exercise_3 exercise_4 exercise_5 exercise_6
+EXECUTABLES = exercise_1 exercise_2 exercise_3 exercise_4 exercise_5 exercise_6 exercise_10 exercise_8 exercise_9 exercise_11
 
 #############################################################################
 # definition des regles
@@ -71,6 +71,11 @@ programmes.o : programmes.c
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
+types_loto.o : types_loto.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 exercise_1.o : exercise_1.c programmes.h
 	@echo ""
 	@echo "---------------------------------------------"
@@ -92,6 +97,26 @@ exercise_5.o : exercise_5.c programmes.h
 	$(CC) -c $(COMPILOPTS) $<
 
 exercise_6.o : exercise_6.c programmes.h
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise_10.o : exercise_10.c programmes.h
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise_8.o : exercise_8.c programmes.h
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise_9.o : exercise_9.c programmes.h
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise_11.o : exercise_11.c programmes.h types_loto.h
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
@@ -136,6 +161,34 @@ exercise_5 : exercise_5.o programmes.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 exercise_6 : exercise_6.o programmes.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise_10 : exercise_10.o programmes.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise_8 : exercise_8.o programmes.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise_9 : exercise_9.o programmes.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise_11 : exercise_11.o programmes.o types_loto.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

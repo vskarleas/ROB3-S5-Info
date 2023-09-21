@@ -7,30 +7,25 @@
 #include "programmes.h"
 
 #define N 10
-#define P 10
+#define P 2
 
 int main(int argc, char **argv)
 {
     srand(time(NULL));
-    int number, r, index_number;
+
+    int number, r;
     int T[N]; //an array of N numbers, so we create N positions in the array
-    number = random_number(P);
+    number = random_number_with_minimum(1, 10);
     T[0] = number; //starts from zero the numeration on c
-    r = random_number(3);
+    r = random_number_with_minimum(0, P);
 
     for (int i = 1; i < N; i++)
     {
-        index_number = T[i-1] + r;
-        T[i] = index_number;
+        T[i] =  T[i-1] + r;
     }
 
     printf("We take the croissant array:\n");
-    //TRY TO MAKE IT A FUNCTION!!!
-    printf("[");
-    for (int i = 0; i < N; i++)
-    {
-        printf(" %d ",T[i] );
-    }
-    printf("]\n");
+    affiche_array(T, N);
+
     return 0;
 }

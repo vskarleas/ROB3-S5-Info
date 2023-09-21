@@ -16,10 +16,10 @@ int main(int argc, char **argv)
 
     srand(time(NULL)); //seconds from the very first january of the current year
 
-    number = random_number(P);
+    number = random_number_with_minimum(0 , P);
 
     T[0] = number; //starts from zero the numeration on c
-    r = random_number(3);
+    r = random_number_with_minimum(1, 3); //based on the alogrithm of the exercise 4
 
     for (int i = 1; i < N; i++)
     {
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     }
     //Tableau deja trie est sauvegardé sur T
 
-    //logic below
+    //logic below with one only boucle for
     for (int i = 0; i < N; i++)
     {
         if (i != N-2)
@@ -41,12 +41,7 @@ int main(int argc, char **argv)
     }
 
     printf("We take the croissant array (without doublons):\n");
-    //TRY TO MAKE IT A FUNCTION!!!
-    printf("[");
-    for (int i = 0; i < N; i++)
-    {
-        printf(" %d ",T[i] );
-    }
-    printf("]\n");
+    affiche_array(T, N);
+
     return 0; 
 }
