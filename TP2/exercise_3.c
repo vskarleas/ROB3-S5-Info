@@ -22,13 +22,7 @@ int main(int argc, char **argv)
     }
 
     printf("BEFORE the doublons treatment:\n");
-    //TRY TO MAKE IT A FUNCTION!!!
-    printf("[");
-    for (int i = 0; i < N; i++)
-    {
-        printf(" %d ",array[i] );
-    }
-    printf("]\n");
+    affiche_array(array, N);
 
 
     //logic below

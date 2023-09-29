@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = exercise_1 exercise_2 exercise_3 exercise_4 exercise_5 exercise_6 exercise_10 exercise_8 exercise_9 exercise_11
+EXECUTABLES = exercise_1 exercise_2 exercise_3 exercise_4 exercise_5 exercise_6 exercise_10 exercise_8 exercise_9 exercise_11 yannis
 
 #############################################################################
 # definition des regles
@@ -121,6 +121,11 @@ exercise_11.o : exercise_11.c programmes.h types_loto.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
+yannis.o : yannis.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 		
 ########################################################
 # regles explicites de creation des executables
@@ -189,6 +194,13 @@ exercise_9 : exercise_9.o programmes.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 exercise_11 : exercise_11.o programmes.o types_loto.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+yannis : yannis.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
