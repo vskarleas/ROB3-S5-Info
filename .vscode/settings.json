@@ -4,6 +4,7 @@
         "sequence_point.h": "c",
         "test_degree": "c",
         "programmes.h": "c",
-        "array": "c"
+        "array": "c",
+        "stdbool.h": "c"
     }
 }

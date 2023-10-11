@@ -80,6 +80,7 @@ int main(int argc, char **argv)
         printf("Give a world : ");
         char string[256];
         scanf("%s", string);
+        
         bool res = palindrome(string);
         printf("The default word is : %s\n", string);
         if (res)

@@ -38,6 +38,7 @@ int main(int argc, char **argv)
         else
         {
             printf("Type 1 for the world on the terminal or 2 for system's world : ");
+            repeat = true;
         }
     }
     if (choice == 2)

@@ -15,3 +15,4 @@ Prof TP Nathan Maurice nathan.maurice@lip6.fr
 * 19/9/2023 10:00 PM: TP1 Exo1-Exo14 was submited on Github
 * 21/9/2023 09:15 PM: TP2 Exo1-Exo11 (excet exercise 7) was submited on GitHub
 * 11/10/2023 12:45 PM: TP2 completed + TP3 until exercise 6
+* 11/10/2023 07:11 PM: TP3 completed
