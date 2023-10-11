@@ -184,7 +184,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        printf("The number of digits of %d is an EVEN number.\n", x);
+        printf("The number of digits of %d is an EVEN number.\n\n", x);
     }
 
     
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
     scanf("%d", &x);
     printf("\n");
     res =  sommeDesChiffres(x);
-    printf("Somme of number %d is : %d\n", x, res);
+    printf("Somme of number %d is : %d\n\n", x, res);
 
     printf("=================== Test 5 ==================\n");
     printf("=============================================\n");
