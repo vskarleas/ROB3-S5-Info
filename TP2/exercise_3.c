@@ -6,7 +6,7 @@
 #include <time.h>
 #include "programmes.h"
 
-#define N 10
+#define N 20
 #define P 100
 
 int main(int argc, char **argv)

@@ -105,6 +105,7 @@ int main(int argc, char **argv)
                 if (T.tab[i] == number)
                 {
                     action = 1; // action 1 means that this number already found before
+                    printf("Number already given from the user. Try again with anoteh rnumber\n");
                 }
             }
 

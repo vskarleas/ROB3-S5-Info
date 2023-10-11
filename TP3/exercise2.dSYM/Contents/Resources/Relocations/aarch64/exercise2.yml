@@ -1,0 +1,12 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     exercise2
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _nbDeChiffre, symObjAddr: 0x0, symBinAddr: 0x100003A40, symSize: 0x58 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _nbDeChiffre, symObjAddr: 0x0, symBinAddr: 0x100003A40, symSize: 0x58 }
+  - { offsetInCU: 0x85, offset: 0x85, size: 0x8, addend: 0x0, symName: _extraitNombre, symObjAddr: 0x58, symBinAddr: 0x100003A98, symSize: 0x1C0 }
+  - { offsetInCU: 0x158, offset: 0x158, size: 0x8, addend: 0x0, symName: _estPair, symObjAddr: 0x218, symBinAddr: 0x100003C58, symSize: 0x64 }
+  - { offsetInCU: 0x18E, offset: 0x18E, size: 0x8, addend: 0x0, symName: _sommeDesChiffres, symObjAddr: 0x27C, symBinAddr: 0x100003CBC, symSize: 0x68 }
+  - { offsetInCU: 0x1D2, offset: 0x1D2, size: 0x8, addend: 0x0, symName: _estCouicable, symObjAddr: 0x2E4, symBinAddr: 0x100003D24, symSize: 0x6C }
+  - { offsetInCU: 0x208, offset: 0x208, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x350, symBinAddr: 0x100003D90, symSize: 0xE4 }
+...

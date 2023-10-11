@@ -1,0 +1,19 @@
+Proposed algorithm for exercise1
+
+recursive_inverse(int number, int length, int index)
+{
+    char int_str[100]
+    itoa(number, int_str, 10) //sprintf in C language
+    if (int_str[index] != '\0')
+    {
+        if (int_str[index] == '-' || int_str[index] == '+')
+        {
+            printf("%s", int_str[index])
+        }
+        else
+        {
+            printf("%s", int_str[length-index-1])
+            recursive_inverse(number, length, index+1)
+        }
+    }
+}

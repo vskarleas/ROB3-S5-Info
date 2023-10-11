@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = exercise_1 exercise_2 exercise_3 exercise_4 exercise_5 exercise_6 exercise_10 exercise_8 exercise_9 exercise_11 yannis exercise_7
+EXECUTABLES = exercise3 exercise2 exercise4_a exercise4_b exercise4_c exercise5 exercise6
 
 #############################################################################
 # definition des regles
@@ -66,158 +66,93 @@ all : $(EXECUTABLES)
 # regles explicites de compilation separee de modules
 # n'ayant pas de fichier .h ET/OU dependant d'autres modules
 
-programmes.o : programmes.c
+exercise3.o : exercise3.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-types_loto.o : types_loto.c
+exercise2.o : exercise2.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise_1.o : exercise_1.c programmes.h
+exercise4_a.o : exercise4_a.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise_2.o : exercise_2.c programmes.h
+exercise4_b.o : exercise4_b.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise_3.o : exercise_3.c programmes.h
+exercise4_c.o : exercise4_c.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise_5.o : exercise_5.c programmes.h
+exercise5.o : exercise5.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise_6.o : exercise_6.c programmes.h
+exercise6.o : exercise6.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
-
-exercise_10.o : exercise_10.c programmes.h
-	@echo ""
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
-
-exercise_8.o : exercise_8.c programmes.h
-	@echo ""
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
-
-exercise_9.o : exercise_9.c programmes.h
-	@echo ""
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
-
-exercise_11.o : exercise_11.c programmes.h types_loto.h
-	@echo ""
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
-
-yannis.o : yannis.c
-	@echo ""
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
-
-exercise_7.o : exercise_7.c programmes.h
-	@echo ""
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
-
 		
 ########################################################
 # regles explicites de creation des executables
 
-exercise_1 : exercise_1.o programmes.o
+exercise3 : exercise3.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_2 : exercise_2.o programmes.o
+exercise2 : exercise2.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_3 : exercise_3.o programmes.o
+exercise4_a : exercise4_a.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_4 : exercise_4.o programmes.o
+exercise4_b : exercise4_b.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_5 : exercise_5.o programmes.o
+exercise4_c : exercise4_c.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_6 : exercise_6.o programmes.o
+exercise5 : exercise5.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_10 : exercise_10.o programmes.o
+exercise6 : exercise6.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-exercise_8 : exercise_8.o programmes.o
-	@echo ""
-	@echo "---------------------------------------------"
-	@echo "Creation de l'executable "$@
-	@echo "---------------------------------------------"
-	$(CC) $^ $(LDOPTS) -o $@
-
-exercise_9 : exercise_9.o programmes.o
-	@echo ""
-	@echo "---------------------------------------------"
-	@echo "Creation de l'executable "$@
-	@echo "---------------------------------------------"
-	$(CC) $^ $(LDOPTS) -o $@
-
-exercise_11 : exercise_11.o programmes.o types_loto.o
-	@echo ""
-	@echo "---------------------------------------------"
-	@echo "Creation de l'executable "$@
-	@echo "---------------------------------------------"
-	$(CC) $^ $(LDOPTS) -o $@
-
-yannis : yannis.o
-	@echo ""
-	@echo "---------------------------------------------"
-	@echo "Creation de l'executable "$@
-	@echo "---------------------------------------------"
-	$(CC) $^ $(LDOPTS) -o $@
-
-exercise_7 : exercise_7.o programmes.o
-	@echo ""
-	@echo "---------------------------------------------"
-	@echo "Creation de l'executable "$@
-	@echo "---------------------------------------------"
-	$(CC) $^ $(LDOPTS) -o $@
 
 # regle pour "nettoyer" le r�pertoire
 clean:

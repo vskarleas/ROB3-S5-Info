@@ -4,9 +4,10 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
+
 #include "programmes.h"
 
-#define N 10
+#define N 20
 #define P 2
 
 int main(int argc, char **argv)
@@ -17,10 +18,10 @@ int main(int argc, char **argv)
     int T[N]; //an array of N numbers, so we create N positions in the array
     number = random_number_with_minimum(1, 10);
     T[0] = number; //starts from zero the numeration on c
-    r = random_number_with_minimum(0, P);
 
     for (int i = 1; i < N; i++)
     {
+        r = random_number_with_minimum(0, P);
         T[i] =  T[i-1] + r;
     }
 

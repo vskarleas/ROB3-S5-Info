@@ -8,10 +8,10 @@ This repository is organised based on the different TPs that they need to be del
 
 Prof TP Nathan Maurice nathan.maurice@lip6.fr
 
-1. Check with the prof if exercise's 5 code is all right or not on TP2
-2. Μένουν οι ασκήσεις 7 από το TP2
+* Remains exercise 7 for TP3
 
 ## Changelog
 
 * 19/9/2023 10:00 PM: TP1 Exo1-Exo14 was submited on Github
 * 21/9/2023 09:15 PM: TP2 Exo1-Exo11 (excet exercise 7) was submited on GitHub
+* 11/10/2023 12:45 PM: TP2 completed + TP3 until exercise 6

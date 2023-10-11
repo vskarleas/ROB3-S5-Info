@@ -32,7 +32,7 @@ int main(int argc, char **argv)
     scanf("%d", &j);
     printf("\n");
 
-    temp = array[l-1]; //because the user does not give the real index but the one it sees on the screen
+    temp = array[l-1]; //because the user does not give the real index but the one it sees on the screen we are doing -1 here
     array[l-1] = array[j-1];
     array[j-1] = temp;
 
