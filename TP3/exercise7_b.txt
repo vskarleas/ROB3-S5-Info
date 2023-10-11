@@ -1,0 +1,3 @@
+- ()(()) Parenthesis OK
+— ()))  Two opening parenthesis are missing in the beginning
+— ())(() One opening parentehsis is missing in the beginning and one closing one at the end 
