@@ -35,6 +35,7 @@ int longest_parenethsis(char *string)
         }
     }
 
+    //strict clang says that variable count isn't used, even if it's used on the logic. 
     if ((count > 0))
     {
         return res;
