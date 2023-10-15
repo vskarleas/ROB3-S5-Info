@@ -12,14 +12,11 @@ int longest_parenethsis(char *string)
     int res = 0;
     int *temp = malloc(sizeof(int) * len); // WORKS AS AN ACCESSIBLE STACK
 
-    int count = 0;
-
     for (int i = 0; i < len; i++)
     {
         if (string[i] == '(')
         {
             temp[++index] = 1; // we first access index and then we do index = index + 1;
-            count++;
         }
 
         // logic from exercise7_c
@@ -27,7 +24,6 @@ int longest_parenethsis(char *string)
         {
             if (temp[index] == 1)
             {
-                count--;
                 index--;
 
                 res = res + 2;
@@ -35,15 +31,7 @@ int longest_parenethsis(char *string)
         }
     }
 
-    //strict clang says that variable count isn't used, even if it's used on the logic. 
-    if ((count > 0))
-    {
-        return res;
-    }
-    else
-    {
-        return res;
-    }
+    return res;
 }
 
 int main(int argc, char **argv)

@@ -1,19 +1,29 @@
 Proposed algorithm for exercise1
 
+//When calling the function for first time we initialize
+index = 0
+length = nb_of_digits(number)
+
+//The function
 recursive_inverse(int number, int length, int index)
 {
     char int_str[100]
-    itoa(number, int_str, 10) //sprintf in C language
+    sprintf(int_str, "%d", x)
     if (int_str[index] != '\0')
     {
         if (int_str[index] == '-' || int_str[index] == '+')
         {
             printf("%s", int_str[index])
+            recursive_inverse(number, length, index+1)
         }
         else
         {
             printf("%s", int_str[length-index-1])
             recursive_inverse(number, length, index+1)
         }
+    }
+    else
+    {
+        return;
     }
 }
