@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     char string[180];
     printf("Input a string to remove the spaces: ");
     fgets(string, sizeof(string), stdin);
+    
     printf("============== AFTER TREATMENT ================ \n");
 
     printf("%s\n",removeSpaces(string));

@@ -5,6 +5,22 @@
 
 #define LONG 100
 
+void mirror_char(char *string)
+{
+    int length = strlen(string);
+    char c;
+    int id = length - 1;
+
+    for (int i = 0; i < length / 2; i++)
+    {
+        c = string[i];
+        string[i] = string[id];
+        string[id] = c;
+
+        // Updating id for inversed reading
+        id = id - 1;
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -31,21 +47,8 @@ int main(int argc, char **argv)
         char chaine[LONG];
         printf("Write a word : ");
         scanf("%s", chaine);
-        int length = strlen(chaine);
-
-        char mirror[length];
-        int idex = 0;
-        for (int i = length - 1; i >= 0; i--)
-        {
-            mirror[idex] = chaine[i];
-            idex++;
-        }
-        mirror[idex] = '\0';
-
-        for (int i = 0; i < length; i++)
-        {
-            chaine[i] = mirror[i];
-        }
+        
+        mirror_char(chaine);
 
         printf("The mirror message is: ");
         printf("%s\n", chaine);
@@ -53,24 +56,11 @@ int main(int argc, char **argv)
 
     if (choice == 2)
     {
-        char chaine[LONG] = "bonjour";
-        int length = strlen(chaine);
+        char chaine[LONG] = "Hello World";
+        
+        mirror_char(chaine);
 
-        char mirror[length];
-        int idex = 0;
-        for (int i = length - 1; i >= 0; i--)
-        {
-            mirror[idex] = chaine[i];
-            idex++;
-        }
-        mirror[idex] = '\0';
-
-        for (int i = 0; i < length; i++)
-        {
-            chaine[i] = mirror[i];
-        }
-
-        printf("The default word is : bonjour\n");
+        printf("The default phrase is : Hello World\n");
         printf("The mirror message is: ");
         printf("%s\n", chaine);
     }

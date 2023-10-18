@@ -41,6 +41,7 @@ int main(int argc, char **argv)
             repeat = true;
         }
     }
+    
     if (choice == 2)
     {
         char string[LONG] = "bonjour";
@@ -49,6 +50,7 @@ int main(int argc, char **argv)
         affiche_mirroir(string);
         printf("\n");
     }
+
     if (choice == 1)
     {
         char chaine[LONG];
