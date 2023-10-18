@@ -8,7 +8,7 @@
         "CC=clang",
         "CFLAGS=-g -Wall",
         "make",
-        "${fileBasenameNoExtension}"
+        "${fileBasenameNoExtension}",
       ],
       "options": {
         "cwd": "${fileDirname}"

@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = exercise3 exercise2 exercise4_a exercise4_b exercise4_c exercise5 exercise6 exercise7_a exercise7_c exercise7_d
+EXECUTABLES = exercise3 exercise2 exercise4_a exercise4_b exercise4_c exercise5 exercise6 exercise7_a exercise7_c exercise7_d exercise1 exercise6_v2
 
 #############################################################################
 # definition des regles
@@ -115,6 +115,16 @@ exercise7_d.o : exercise7_d.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
+
+exercise1.o : exercise1.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise6_v2.o : exercise6_v2.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
 		
 ########################################################
 # regles explicites de creation des executables
@@ -183,6 +193,20 @@ exercise7_c : exercise7_c.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 exercise7_d : exercise7_d.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise1 : exercise1.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise6_v2 : exercise6_v2.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

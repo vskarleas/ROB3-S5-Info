@@ -64,7 +64,7 @@ void sous_chaine(char *s1, char *s2)
 int main(int argc, char **argv)
 {
     printf("Before: \n");
-    char s1[200] = "Hello world ! This is the default phrase that every programming language needs to print on a terminal. The word world symbolizes the unified progamming community";
+    char s1[200] = "Hello world! This is  full of opportunities. Welcome to the world !";
     printf("%s \n\n", s1);
 
     printf("The phrase to be removed: \n");

@@ -13,12 +13,12 @@ recursive_inverse(int number, int length, int index)
     {
         if (int_str[index] == '-' || int_str[index] == '+')
         {
-            printf("%s", int_str[index])
+            printf("%c", int_str[index])
             recursive_inverse(number, length, index+1)
         }
         else
         {
-            printf("%s", int_str[length-index-1])
+            printf("%c", int_str[length-index-1])
             recursive_inverse(number, length, index+1)
         }
     }

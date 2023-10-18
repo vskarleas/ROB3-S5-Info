@@ -22,7 +22,7 @@ int main(int argc, char **argv)
         }
         else
         {
-            printf("Type 1 for the world on the terminal or 2 for system's world : ");
+            printf("Type 1 for the word on the terminal or 2 for system's world : ");
         }
     }
     if (choice == 1)
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 
     if (choice == 2)
     {
-        char chaine[LONG] = "bonjour";
+        char chaine[LONG] = "bonjour je ";
         int length = strlen(chaine);
 
         char mirror[length];

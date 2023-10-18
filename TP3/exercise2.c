@@ -21,7 +21,7 @@ int extraitNombre(int x, int n, int lg)
 {
     if (x < 0)
     {
-        return -100;
+        x = -x;
     }
 
     int length = nbDeChiffre(x);
@@ -37,7 +37,7 @@ int extraitNombre(int x, int n, int lg)
         {
             // programs main logic goes here
             char numberStr[512];
-            sprintf(numberStr, "%d", x); // itoa(x, numberStr, 10) HERE
+            sprintf(numberStr, "%d", x); // itoa(x, numberStr, 10) HERE [int to string]
             numberStr[len_test] = '\0';  // changed the string of which we are going to take the final number out of it
             int len_str = strlen(numberStr);
 

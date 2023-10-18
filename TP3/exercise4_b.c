@@ -23,7 +23,7 @@ int main(int argc, char **argv)
         }
         else
         {
-            printf("Type 1 for the world on the terminal or 2 for system's world : ");
+            printf("Type 1 for the word on the terminal or 2 for system's world : ");
         }
     }
     if (choice == 1)
