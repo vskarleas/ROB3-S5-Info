@@ -36,7 +36,7 @@ void sous_chaine(char *s1, char *s2)
         i = locator; 
         if (i >= len)
         {
-            /* Means that we have bypased our length of the original string and now it is time to stop the program */
+            /* Means that we have bypased our length of the original string and now it is time to stop the program  */
             ok = false;
         }
     }
