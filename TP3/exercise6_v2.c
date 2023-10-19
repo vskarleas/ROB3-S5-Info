@@ -3,17 +3,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-//version optimized in comparison to v1
+//version optimized in comparison to v1 (BEST ONE SINCE IT CHECKS CARACTER PER CARACTER)
 void sous_chaine(char *s1, char *s2)
 {
     int len = strlen(s1);
     int len2 = strlen(s2);
-    int i = 0;
+    int id = 0;
     bool ok = true;
 
     while(ok)
     {
-        char *res = strstr(&s1[i], s2); //finds the first occurrence of the substring needle in the string haystack
+        char *res = strstr(&s1[id], s2); //finds the first occurrence of the substring needle in the string haystack
 
         /* in case that we don't find the program, we retrun directly */
         if (res == NULL)
@@ -33,8 +33,8 @@ void sous_chaine(char *s1, char *s2)
         len = len - len2; 
         
         //saw s2 last location
-        i = locator; 
-        if (i >= len)
+        id = locator; 
+        if (id >= len)
         {
             /* Means that we have bypased our length of the original string and now it is time to stop the program  */
             ok = false;
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 
     sous_chaine(s1, s2); //function is modofying s1
     
-    //printing is done in the function
+    //printing the modified string s1
     printf("%s\n", s1);
     return 0;
 }

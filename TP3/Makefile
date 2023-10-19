@@ -125,6 +125,9 @@ exercise6_v2.o : exercise6_v2.c
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
+
+
+
 		
 ########################################################
 # regles explicites de creation des executables
@@ -212,6 +215,8 @@ exercise6_v2 : exercise6_v2.o
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
+
+
 
 
 # regle pour "nettoyer" le r�pertoire

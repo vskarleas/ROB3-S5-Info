@@ -26,6 +26,7 @@ int inverser_entier(int number)
     return inverser_entier(number /= 10); // Divide AND assignment operator. It divides the left operand with the right operand and assigns the result to the left operand
 }
 
+//usage of arguments passe dduring program's execution
 int main(int argc, char **argv)
 {
     if (argc < 2 || argc > 3)
@@ -37,8 +38,11 @@ int main(int argc, char **argv)
     printf("%s\n", argv[1]);
 
     int x;
+
+    //transforms string to a number so that it can be used from the function inverser_entier
     x = atoi(argv[1]);
     inverser_entier(x);
+    printf("\n");
 
     return 0;
 }
