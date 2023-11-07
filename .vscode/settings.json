@@ -5,6 +5,7 @@
         "test_degree": "c",
         "programmes.h": "c",
         "array": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "__locale": "c"
     }
 }
