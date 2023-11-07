@@ -6,6 +6,7 @@
         "programmes.h": "c",
         "array": "c",
         "stdbool.h": "c",
-        "__locale": "c"
+        "__locale": "c",
+        "stdio.h": "c"
     }
 }

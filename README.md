@@ -18,3 +18,4 @@ Prof TP Nathan Maurice nathan.maurice@lip6.fr
 * 11/10/2023 07:11 PM: TP3 completed
 * 15/10/2023 10:14 PM: Bug fixes on TP3 regarding Exercise 7 (question d) + optimization on exercise 1
 * 18/10/2023 11:20 AM: Bug fixes TP3
+* 7/11/2023 11:44 PM: Exo 1-7 TP4 except Exo 6

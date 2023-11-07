@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "extra.h"
-
 #define NB_ROWS 15
 #define NB_COLS 17
 

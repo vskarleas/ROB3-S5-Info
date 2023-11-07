@@ -1,53 +1,43 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#include "function-exo2.h"
-
+#include "functions-exo4.h"
 
 int main(int argc, char **argv)
 {
     int NB_ROWS, NB_COLS;
 
-    printf("Give us the number of rows for the matrix.\n");
-    printf("Rows = ");
-    scanf("%d", &NB_ROWS);
-    printf("\n");
+    bool repeat = true;
 
-    printf("Give us the number of collumns for the matrix.\n");
-    printf("Cols = ");
-    scanf("%d", &NB_COLS);
-    printf("\n");
+    while (repeat)
+    {
+        printf("Give us the number of rows and the number of collumns for the matrix: ");
+        scanf("%d%d", &NB_ROWS, &NB_COLS);
+        printf("\n");
 
-    //tabel creation
+        if (NB_COLS < 1 || NB_ROWS < 1)
+        {
+            printf("\n================================\n");
+            printf("We need a table at least 1 column and 1 row\n");
+            printf("TRY AGAIN\n\n");
+        }
+        else
+        {
+            repeat = false;
+        }
+    }
+
+    // table creation
     int *tab = malloc((NB_ROWS * NB_COLS) * sizeof(int));
 
-    int x;
-    //Asking numbers from user to be added on the creaed matrix
-    for (int i = 0; i < NB_ROWS; i++) {
-        for (int j = 0; j < NB_COLS; j++)
-        {
-            printf("Number for position (%d, %d) ? ", i+1, j+1);
-            scanf("%d", &x);
+    // table initailization
+    initialization(NB_ROWS, NB_COLS, tab);
 
-            tab[i * NB_COLS + j] = x;;
-        }
-    }
-    printf("\n\n");
-
-    printf("Printign the created matrix:\n");
-    /* Accessing the array values as if it was a 2D array to print it on the terminal*/
-    for (int i = 0; i < NB_ROWS; i++) {
-        for (int j = 0; j < NB_COLS; j++)
-        {
-            printf("%d ", tab[i * NB_COLS + j]);
-        }
-        printf("\n");
-    }
+    printf("\n\nPrintign the created matrix:\n");
+    affiche_mat(NB_ROWS, NB_COLS, tab);
     printf("\n");
-
-    /*Printing teh row and the collumn chosen fro the user using the affichemat(m,l,c) function*/
-    //TO BE COMPLETED at the file function-exo2.c
 
     // free up the allocated memory
     free(tab);
