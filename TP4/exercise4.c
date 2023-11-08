@@ -32,6 +32,11 @@ int main(int argc, char **argv)
     // table creation
     int *tab = malloc((NB_ROWS * NB_COLS) * sizeof(int));
 
+    if (tab == NULL) {
+        printf("ERROR: malloc failed!\n");
+        exit(1);
+    }
+
     // table initailization
     initialization(NB_ROWS, NB_COLS, tab);
 

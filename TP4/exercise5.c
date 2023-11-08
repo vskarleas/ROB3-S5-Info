@@ -2,8 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-/* A table includes by default teh addresses of the corresponding table in the memory. That's why we do not pass as argument soething like &tab. Instead we use tab if tab is an initalised table */
-
 // function to set up matrix elements entered by the user
 void matrix_initialisation(int matrix[][10], int row, int column) {
 
@@ -38,8 +36,8 @@ void multiply_matrices(int first[][10], int second[][10], int result[][10], int 
    }
 }
 
-// function to display the matrix
-void display(int result[][10], int row, int column) {
+
+void affiche(int result[][10], int row, int column) {
 
    printf("\nOutput Matrix:\n");
    for (int i = 0; i < row; ++i) {
@@ -79,19 +77,17 @@ int main() {
       scanf("%d%d", &r2, &c2);
    }
 
-   printf("MATRIX 1\n");
-   // get elements of the first matrix
+   printf("Matrix No 1\n");
    matrix_initialisation(first, r1, c1);
 
-   printf("\nMATRIX 2\n");
-   // get elements of the second matrix
+   printf("\nMatrix No 2\n");
    matrix_initialisation(second, r2, c2);
 
-   // multiply two matrices.
+   // multiplying
    multiply_matrices(first, second, result, r1, c1, r2, c2);
 
    // display the result
-   display(result, r1, c2);
+   affiche(result, r1, c2);
 
    return 0;
 }

@@ -29,3 +29,16 @@ void affiche_mat(int NB_ROWS, int NB_COLS, int *tab)
         printf("\n");
     }
 }
+
+
+/* Anothe rversion of printing the matrix on the terminal if the type of the table is 2 dimensional (type int **tab)*/
+void affiche_mat_2(int NB_ROWS, int NB_COLS, int **tab)
+{
+    for (int i = 0; i < NB_ROWS; i++) {
+        for (int j = 0; j < NB_COLS; j++)
+        {
+            printf("%d ", tab[i][j]);
+        }
+        printf("\n");
+    }
+}

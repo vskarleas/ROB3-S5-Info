@@ -69,6 +69,7 @@ bool chercher_chemin_rec(int *maze, int x, int y, int N);
 /* Printing the labyrinth */
 void afficher_lab(int *tab, int N)
 {
+	char palette[2] = {' ', '*'};
 	printf("+ ");
 	for (int i = 0; i < N; i++)
 	{
@@ -83,11 +84,11 @@ void afficher_lab(int *tab, int N)
 		{
 			if (tab[i * N + j] == 0)
 			{
-				printf("  ");
+				printf("%c ", palette[0]);
 			}
 			if (tab[i * N + j] == 1)
 			{
-				printf("* ");
+				printf("%c ", palette[1]);
 			}
 			if (tab[i * N + j] == 2)
 			{
@@ -114,7 +115,9 @@ bool is_safe(int *maze, int x, int y, int N)
 {
 	// if (x, y outside maze) return false
 	if (x >= 0 && x < N && y >= 0 && y < N && maze[x * N + y] == 0) // 0 is a free case
+	{
 		return true;
+	}
 
 	return false;
 }
@@ -168,11 +171,6 @@ bool chercher_chemin_rec(int *maze, int x, int y, int N)
 			return true;
 		}
 
-		/* moving left */
-		if ((chercher_chemin_rec(maze, x, y - 1, N) == true) && y - 1 >= 0)
-		{
-			return true;
-		}
 
 		/* If none of the above movements work then BACKTRACK:
 			unmark x, y as part of solution path */
@@ -222,20 +220,35 @@ int main(int argc, char **argv)
 
 		// creating the labyrinth
 		int *maze = malloc((N * N) * sizeof(int));
+
+		if (maze == NULL) {
+        printf("ERROR: malloc failed!\n");
+        exit(1);
+    }
 		initialize(maze, N);
 
 		// solving the labyrinth
 		chercher_chemin(maze, N);
+
+		free(maze);
 		return 2;
 	}
 	else if (choice == 1)
 	{
 		// creating the labyrinth
 		int *maze = malloc((N * N) * sizeof(int));
+
+		if (maze == NULL) {
+        printf("ERROR: malloc failed!\n");
+        exit(1);
+    }
+	
 		initialize2(maze, N);
 
 		// solving the labyrinth
 		chercher_chemin(maze, N);
+
+		free(maze);
 		return 1;
 	}
 	else if (choice == 3)
@@ -268,6 +281,8 @@ int main(int argc, char **argv)
 
 		// solving the labyrinth
 		chercher_chemin(maze, 8);
+
+		free(maze);
 		return 3;
 	}
 	else

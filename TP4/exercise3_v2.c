@@ -7,26 +7,38 @@
 
 int main(int argc, char **argv)
 {
-    int *tab = malloc((NB_ROWS * NB_COLS) * sizeof(int));
+    int **tab;
+    tab = malloc(NB_ROWS * sizeof(int **));
 
-    if (tab == NULL) {
-        printf("ERROR: malloc failed!\n");
+     if (tab == NULL) {
+        printf("ERROR: malloc allocation failed!\n");
         exit(1);
     }
 
-    // It's like having a huge horizontale table
-    // just filling the table in order to say that the program is doing soemthing to the created table before FREEing it
-    for (int i = 0; i < NB_ROWS * NB_COLS; i++)
+    //table on table IDEA
+    for (int i = 0; i < NB_ROWS; i++)
     {
-        tab[i] = i + 1;
+        tab[i] = malloc(NB_COLS * sizeof(int));
     }
- 
 
-    /* Accessing the array values as if it was a 2D array */
+
+    // just filling the table in order to say that the program is doing soemthing to the created table before FREEing it
+    int k =1;
+    for (int i = 0; i < NB_ROWS; i++)
+    {
+        for(int j = 0; j < NB_COLS; j++)
+        {
+            tab[i][j] = k;
+            k ++;
+        }
+    }
+
+
+
     for (int i = 0; i < NB_ROWS; i++) {
         for (int j = 0; j < NB_COLS; j++)
         {
-            printf("%d ", tab[i * NB_COLS + j]);
+            printf("%d ", tab[i][j]);
         }
         printf("\n");
     }
