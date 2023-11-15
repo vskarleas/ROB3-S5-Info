@@ -1,8 +1,11 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
+
+
 int i ;
 int* ptr= &i; //stroing the address of the variable i
 
@@ -17,4 +20,24 @@ printf("%p\n", &i);
 
 printf("%d\n", i);
 printf("%d\n", *kr);
+
+char string[10];
+printf("Input a string: ");
+fgets(string, sizeof(string), stdin);
+
+int ln = strlen (string);
+if ((ln > 0) && (string[ln-1] == '\n'))
+    string[ln-1] = '\0';
+
+printf("I read this: %s\n", string);
+if (strcmp(string, "hello") == 0)
+{
+    printf("The same\n");
 }
+else{
+    printf("Not the same\n");
+}
+}
+
+
+//ΠΡΟΣΟΧΗ: tab[i] = *(tab + i) και &tab[i] = tab + i SOS SOS SOS SOS SOS SOS SOS SOS SOS SOS SOS SOS SOS

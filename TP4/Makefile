@@ -172,7 +172,7 @@ exercise5 : exercise5.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test : test.o
+hello : test.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

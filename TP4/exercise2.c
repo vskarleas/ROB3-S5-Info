@@ -6,7 +6,10 @@
 
 int main(int argc, char **argv)
 {
-    int * tab = malloc(sizeof(int)*NB_NUMBERS);
+    int * tab ;
+    tab = (int*)malloc(sizeof(int)*NB_NUMBERS);
+
+    //το ίδιο με  int * tab = malloc(sizeof(int)*NB_NUMBERS)
 
     if (tab == NULL) {
         printf("ERROR: malloc failed!\n");
