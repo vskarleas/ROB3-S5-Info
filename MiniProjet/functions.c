@@ -20,11 +20,6 @@
 
 #define COULE 10 // Felicitations
 
-/* Initializes the clock for random numbers generation */
-void init_nb_aleatoire()
-{
-	srandom(time(NULL));
-}
 
 /*Generates random numbers min and max given as arguments*/
 int nb_random(int min, int max)

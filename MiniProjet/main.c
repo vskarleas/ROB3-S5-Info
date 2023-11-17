@@ -1,13 +1,14 @@
-#include <stdbool.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 #include "functions.h"
 
 int main(int argc, char **argv)
 {
-    init_nb_aleatoire();
+    srand(time(0));
     bool repeater = true;
 
     int taille_plateau;

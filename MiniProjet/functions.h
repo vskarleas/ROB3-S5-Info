@@ -18,8 +18,6 @@ typedef struct navire
     int taille;
 } Navire;
 
-void init_nb_aleatoire();
-
 int nb_random(int min, int max);
 
 void printing_the_grille(int **table, int taille_plateau);

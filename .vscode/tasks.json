@@ -6,7 +6,7 @@
       "command": "/usr/bin/env",
       "args": [
         "CC=clang",
-        "CFLAGS=-g -Wall",
+        "CFLAGS=-g -Wall -Wextra",
         "make",
         "${fileBasenameNoExtension}",
       ],
