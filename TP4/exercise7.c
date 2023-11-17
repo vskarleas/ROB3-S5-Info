@@ -153,13 +153,13 @@ bool chercher_chemin_rec(int *maze, int x, int y, int N)
 		// mark x, y as part of solution path temporarily
 		maze[x * N + y] = 2;
 
-		/* Move to the right */
+		/* Moving down */
 		if (chercher_chemin_rec(maze, x + 1, y, N) == true)
 		{
 			return true;
 		}
 
-		/* Moving down */
+		/* Move to the right */
 		if (chercher_chemin_rec(maze, x, y + 1, N) == true)
 		{
 			return true;
@@ -170,7 +170,6 @@ bool chercher_chemin_rec(int *maze, int x, int y, int N)
 		{
 			return true;
 		}
-
 
 		/* If none of the above movements work then BACKTRACK:
 			unmark x, y as part of solution path */
@@ -221,10 +220,11 @@ int main(int argc, char **argv)
 		// creating the labyrinth
 		int *maze = malloc((N * N) * sizeof(int));
 
-		if (maze == NULL) {
-        printf("ERROR: malloc failed!\n");
-        exit(1);
-    }
+		if (maze == NULL)
+		{
+			printf("ERROR: malloc failed!\n");
+			exit(1);
+		}
 		initialize(maze, N);
 
 		// solving the labyrinth
@@ -238,11 +238,12 @@ int main(int argc, char **argv)
 		// creating the labyrinth
 		int *maze = malloc((N * N) * sizeof(int));
 
-		if (maze == NULL) {
-        printf("ERROR: malloc failed!\n");
-        exit(1);
-    }
-	
+		if (maze == NULL)
+		{
+			printf("ERROR: malloc failed!\n");
+			exit(1);
+		}
+
 		initialize2(maze, N);
 
 		// solving the labyrinth
