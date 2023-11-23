@@ -3,8 +3,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-//NOTE: The functions that prints the list on the terminal was already created on exercise 2. Here we are adding the function that allows to remove the first element of the list
-
 /*---- le type maillon ----*/
 typedef struct Maillon_
 {
@@ -60,12 +58,30 @@ void afficher_liste (Liste *L)
     }
 }
 
+/* Deleting the first element of the last as asked on exercise 3 */
 void delete_first_element (Liste *L)
 {
     Maillon *el = L->first;
     L->first = el->suiv;
     L->taille --;
     return;
+}
+
+/* If a maillon equals to an existing one in the liste we perform the action (c1 + c2, n) */
+bool treat_egaux(Liste *L, double flottant, int id)
+{
+    Maillon *el = L->first;
+    while (el != NULL)
+    {
+        if(el->c == flottant)
+        {
+            el->c = el->c + flottant;
+            return true;
+        }
+      el = el->suiv;
+    }
+
+    return false;
 }
 
 
@@ -75,6 +91,13 @@ void ajouter_element_liste_Point(Liste* L, double flottant, int id)
     // Create a new Maillon
     Maillon* newMaillon;
     newMaillon = creer_element_liste_Point(flottant, id);
+
+    bool egality_treatmen = treat_egaux(L, flottant, id);
+    if (egality_treatmen == true)
+    {
+        return;
+    }
+
 
     //verifying if it's allocated or not
     if (newMaillon == NULL)
@@ -125,15 +148,41 @@ void ajouter_element_liste_Point(Liste* L, double flottant, int id)
     L->taille++;
 }
 
+Liste initialize_list()
+{
+    Liste myList = creer_liste_Point_vide();
+    bool repeater = true;
+
+    double flottant;
+    int id;
+    int count = 1;
+
+    while(repeater)
+    {
+        printf("Element No %d\n", count);
+        printf("Float value = ");
+        scanf("%lf", &flottant);
+        printf("\n");
+        printf("n value = ");
+        scanf("%d", &id);
+        printf("\n");
+
+        if (id<0)
+        {
+            repeater = false;
+            return myList;
+        }
+
+
+        ajouter_element_liste_Point(&myList, flottant, id);
+        printf("=================\n\n");
+        count ++;
+    }
+}
 
 int main(int argc, char **argv)
 {
-    Liste mylist = creer_liste_Point_vide();
-
-    // Add elements to the sorted list
-    ajouter_element_liste_Point(&mylist, 3.5, 1);
-    ajouter_element_liste_Point(&mylist, 1.2, 2);
-    ajouter_element_liste_Point(&mylist, 5.7, 3);
+    Liste mylist = initialize_list();
 
     // afficher_liste the elements in the list
     printf("Printing before first element's removal\n");

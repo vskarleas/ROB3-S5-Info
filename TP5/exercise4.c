@@ -58,6 +58,15 @@ void afficher_liste (Liste *L)
     }
 }
 
+/* Deleting the first element of the last as asked on exercise 3 */
+void delete_first_element (Liste *L)
+{
+    Maillon *el = L->first;
+    L->first = el->suiv;
+    L->taille --;
+    return;
+}
+
 /* If a maillon equals to an existing one in the liste we perform the action (c1 + c2, n) */
 bool treat_egaux(Liste *L, double flottant, int id)
 {
@@ -150,6 +159,11 @@ int main(int argc, char **argv)
     ajouter_element_liste_Point(&mylist, 1.2, 4); //a maillon with the same flottant and different ID
 
     // afficher_liste the elements in the list
+    printf("Printing before first element's removal\n");
+    afficher_liste(&mylist);
+
+    delete_first_element(&mylist);
+    printf("After first element's removal\n");
     afficher_liste(&mylist);
 
     return 0;
