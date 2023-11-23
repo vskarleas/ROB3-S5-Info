@@ -25,15 +25,15 @@ void print_ecosystem(Ecosystem *ecosystem, int rows, int columns);
 void move_entities(Ecosystem *ecosystem, double change_dir_prob);
 
 // Function to reproduce proies in the ecosystem with a given probability
-void reproduce_entities(Ecosystem *ecosystem, double reproduce_prob_proie);
+void reproduce_entities(Ecosystem *ecosystem, double p_reproduce_proie);
 
 // Function to update the energy levels of entities in the ecosystem
-void update_energy(Ecosystem *ecosystem, int energy_decay_proie, int energy_decay_predateur);
+void update_energy(Ecosystem *ecosystem, int d_proie, int d_predateur);
 
 // Function to simulate prédateurs eating proies with a given probability
 void predator_eat_proie(Ecosystem *ecosystem, double eat_prob);
 
 // Function to reproduce prédateurs in the ecosystem with a given probability
-void reproduce_predators(Ecosystem *ecosystem, double reproduce_prob_predateur);
+void reproduce_predators(Ecosystem *ecosystem, double p_reproduce_predateur);
 
 #endif

@@ -7,30 +7,31 @@
 
 #define ECOSYSTEM_SIZE 10
 
-typedef struct {
+typedef struct Entity {
     int x;
     int y;
-    int energy; //for energy lower than 0 we have a predateur
+    int energy; // for energy lower than 0 we have a predateur
     int direction;
+    struct Entity* next;
 } Entity;
 
 typedef struct {
-    Entity *entities;
+    Entity* head;
     int size;
 } Ecosystem;
 
-void initialize_ecosystem(Ecosystem *ecosystem, int size);
-void print_ecosystem(Ecosystem *ecosystem, int rows, int columns);
-void move_entities(Ecosystem *ecosystem, float change_dir_prob);
-void reproduce_entities(Ecosystem *ecosystem, float p_reproduce);
-void update_energy(Ecosystem *ecosystem, int d_proie, int d_predateur);
-void predator_eat_proie(Ecosystem *ecosystem, float eat_prob);
-void reproduce_predators(Ecosystem *ecosystem, float p_reproduce);
-void change_direction(Entity *entity, float change_dir_prob);
+void initialize_ecosystem(Ecosystem* ecosystem, int size);
+void print_ecosystem(Ecosystem* ecosystem, int rows, int columns);
+void move_entities(Ecosystem* ecosystem, float change_dir_prob);
+void reproduce_entities(Ecosystem* ecosystem, float p_reproduce);
+void update_energy(Ecosystem* ecosystem, int d_proie, int d_predateur);
+void predator_eat_proie(Ecosystem* ecosystem, float eat_prob);
+void reproduce_predators(Ecosystem* ecosystem, float p_reproduce);
+void change_direction(Entity* entity, float change_dir_prob);
 
-int validate_input(int min, int max, const char *message, bool is_percentage);
+int validate_input(int min, int max, const char* message, bool is_percentage);
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     srand(time(NULL));
 
     Ecosystem ecosystem;
@@ -57,7 +58,7 @@ int main(int argc, char **argv) {
 
     if (use_default) {
         // Default configuration
-        num_time_steps = 8;
+        num_time_steps = 9;
         d_proie = 3;
         d_predateur = 1;
         p_reproduce_proie = 0.47;
@@ -95,14 +96,16 @@ int main(int argc, char **argv) {
     int proie_count = 0;
     int predateur_count = 0;
 
-    for (int i = 0; i < ecosystem.size; ++i) {
-        if (ecosystem.entities[i].energy > 0) {
-            if (ecosystem.entities[i].direction == 0) {
+    Entity* current = ecosystem.head;
+    while (current != NULL) {
+        if (current->energy > 0) {
+            if (current->direction == 0) {
                 proie_count++;
             } else {
                 predateur_count++;
             }
         }
+        current = current->next;
     }
 
     printf("\n\033[1;35mRésumé de la simulation\033[1;0m\n");
@@ -112,34 +115,43 @@ int main(int argc, char **argv) {
     printf("Pourcentage de proies par rapport à la population initiale: %.2f%%\n", ((double)proie_count / ECOSYSTEM_SIZE) * 100);
     printf("Pourcentage de prédateurs par rapport à la population initiale: %.2f%%\n", ((double)predateur_count / ECOSYSTEM_SIZE) * 100);
 
-    printf("================================================\n");
-    printf("The positions of entities in the ecosystem are displayed on the terminal. Proies are represented in green with their energy levels, and predateurs are represented in red. Empty spaces are represented by dots.");
+    // Additional conclusions or observations can be added here
 
-    free(ecosystem.entities);
+    // Free the linked list
+    current = ecosystem.head;
+    while (current != NULL) {
+        Entity* next_entity = current->next;
+        free(current);
+        current = next_entity;
+    }
 
     return 0;
 }
 
+// Other functions remain unchanged
 
 /* Starting up the ecosystem */
-void initialize_ecosystem(Ecosystem *ecosystem, int size) {
-    ecosystem->size = size;
-    ecosystem->entities = (Entity *)malloc(size * sizeof(Entity));
+void initialize_ecosystem(Ecosystem* ecosystem, int size) {
+    ecosystem->head = NULL;
+    ecosystem->size = 0;
 
     for (int i = 0; i < size; ++i) {
-        ecosystem->entities[i].x = rand() % size;
-        ecosystem->entities[i].y = rand() % size;
-        ecosystem->entities[i].energy = 10;
-        ecosystem->entities[i].direction = rand() % 4; // 0: NORTH, 1: EAST, 2: SOUTH, 3: WEST
+        Entity* new_entity = (Entity*)malloc(sizeof(Entity));
+        new_entity->x = rand() % size;
+        new_entity->y = rand() % size;
+        new_entity->energy = 10;
+        new_entity->direction = rand() % 4;
+        new_entity->next = ecosystem->head;
+        ecosystem->head = new_entity;
+        ecosystem->size++;
     }
 }
 
-
 /* Printing the ecosystem on the terminal */
-void print_ecosystem(Ecosystem *ecosystem, int rows, int columns) {
+/* Printing the ecosystem on the terminal */
+void print_ecosystem(Ecosystem* ecosystem, int rows, int columns) {
     printf("     ");
-    for (int x=0; x < columns; ++x)
-    {
+    for (int x = 0; x < columns; ++x) {
         printf(" %d  ", x);
     }
     printf("\n");
@@ -147,18 +159,22 @@ void print_ecosystem(Ecosystem *ecosystem, int rows, int columns) {
     for (int y = 0; y < rows; ++y) {
         printf("%d    ", y);
         for (int x = 0; x < columns; ++x) {
+            Entity* current = ecosystem->head;
             int entity_found = 0;
-            for (int i = 0; i < ecosystem->size; ++i) {
-                if (ecosystem->entities[i].x == x && ecosystem->entities[i].y == y) {
-                    if (ecosystem->entities[i].energy > 0) {
-                        printf("\033[1;32mP%d\033[1;0m  ", ecosystem->entities[i].energy); //it won energy
+
+            while (current != NULL) {
+                if (current->energy > 0 && current->x == x && current->y == y) {
+                    if (current->energy > 0) {
+                        printf("\033[1;32mP%d\033[1;0m  ", current->energy); // it won energy
                     } else {
-                        printf("\033[1;31mP%d\033[1;0m  ", ecosystem->entities[i].energy); //it lost energy
+                        printf("\033[1;31mP%d\033[1;0m  ", current->energy); // it lost energy
                     }
                     entity_found = 1;
                     break;
                 }
+                current = current->next;
             }
+
             if (!entity_found) {
                 printf("\033[1;37m .  \033[1;0m");
             }
@@ -168,99 +184,132 @@ void print_ecosystem(Ecosystem *ecosystem, int rows, int columns) {
     printf("\n");
 }
 
+
 /* Changing entities position according to their orientation - Only one step at the time */
-void move_entities(Ecosystem *ecosystem, float change_dir_prob) {
-    for (int i = 0; i < ecosystem->size; ++i) {
+void move_entities(Ecosystem* ecosystem, float change_dir_prob) {
+    Entity* current = ecosystem->head;
+
+    while (current != NULL) {
         if ((float)rand() / RAND_MAX < change_dir_prob) {
-            change_direction(&ecosystem->entities[i], change_dir_prob);
+            change_direction(current, change_dir_prob);
         }
 
-        switch (ecosystem->entities[i].direction) {
+        switch (current->direction) {
             case 0: // NORTH
-                ecosystem->entities[i].y = (ecosystem->entities[i].y - 1 + ECOSYSTEM_SIZE) % ECOSYSTEM_SIZE;
+                current->y = (current->y - 1 + ECOSYSTEM_SIZE) % ECOSYSTEM_SIZE;
                 break;
             case 1: // EAST
-                ecosystem->entities[i].x = (ecosystem->entities[i].x + 1) % ECOSYSTEM_SIZE;
+                current->x = (current->x + 1) % ECOSYSTEM_SIZE;
                 break;
             case 2: // SOUTH
-                ecosystem->entities[i].y = (ecosystem->entities[i].y + 1) % ECOSYSTEM_SIZE;
+                current->y = (current->y + 1) % ECOSYSTEM_SIZE;
                 break;
             case 3: // WEST
-                ecosystem->entities[i].x = (ecosystem->entities[i].x - 1 + ECOSYSTEM_SIZE) % ECOSYSTEM_SIZE;
+                current->x = (current->x - 1 + ECOSYSTEM_SIZE) % ECOSYSTEM_SIZE;
                 break;
             default:
                 break;
         }
+
+        current = current->next;
     }
 }
+
 
 /* Proies reproduction and placement on the ecosystem */
-void reproduce_entities(Ecosystem *ecosystem, float p_reproduce) {
-    int original_size = ecosystem->size;
+void reproduce_entities(Ecosystem* ecosystem, float p_reproduce) {
+    Entity* current = ecosystem->head;
 
-    for (int i = 0; i < original_size; ++i) {
+    while (current != NULL) {
         if ((float)rand() / RAND_MAX < p_reproduce) {
-            Entity new_entity = ecosystem->entities[i];
-            new_entity.direction = rand() % 4;
-
-            ecosystem->entities = (Entity *)realloc(ecosystem->entities, (++ecosystem->size) * sizeof(Entity));
-            ecosystem->entities[ecosystem->size - 1] = new_entity;
+            Entity* new_entity = (Entity*)malloc(sizeof(Entity));
+            new_entity->x = current->x;
+            new_entity->y = current->y;
+            new_entity->energy = current->energy;  // You may adjust this based on your reproduction logic
+            new_entity->direction = rand() % 4;
+            new_entity->next = ecosystem->head;
+            ecosystem->head = new_entity;
+            ecosystem->size++;
         }
+
+        current = current->next;
     }
 }
 
-/* Scans the whoel ecosystem and updates the energy according to the values of d_predateur and d_proie */
-void update_energy(Ecosystem *ecosystem, int d_proie, int d_predateur) {
-    for (int i = 0; i < ecosystem->size; ++i) {
-        if (ecosystem->entities[i].energy > 0) {
-            if (ecosystem->entities[i].energy <= d_proie && ecosystem->entities[i].energy > 0) {
-                ecosystem->entities[i].energy = 0; //declaring a predateur
+
+/* Scans the whole ecosystem and updates the energy according to the values of d_predateur and d_proie */
+/* Scans the whole ecosystem and updates the energy according to the values of d_predateur and d_proie */
+void update_energy(Ecosystem* ecosystem, int d_proie, int d_predateur) {
+    Entity* current = ecosystem->head;
+
+    while (current != NULL) {
+        if (current->energy > 0) {
+            if (current->energy <= d_proie) {
+                current->energy = 0; // declaring a predateur
             } else {
-                ecosystem->entities[i].energy -= (ecosystem->entities[i].energy > d_proie) ? d_proie : d_predateur;
+                current->energy -= (current->energy > d_proie) ? d_proie : d_predateur;
             }
         }
+
+        current = current->next;
     }
 }
+
 
 /* Updating the entity from proie to predateur */
-/* predateurs are those entities with an enery equal to 0 or lower than that */
-void predator_eat_proie(Ecosystem *ecosystem, float eat_prob) {
-    for (int i = 0; i < ecosystem->size; ++i) {
-        if (ecosystem->entities[i].energy > 0) {
-            for (int j = 0; j < ecosystem->size; ++j) {
-                if (i != j && ecosystem->entities[j].energy > 0 &&
-                    ecosystem->entities[i].x == ecosystem->entities[j].x &&
-                    ecosystem->entities[i].y == ecosystem->entities[j].y &&
+/* predateurs are those entities with an energy equal to 0 or lower than that */
+void predator_eat_proie(Ecosystem* ecosystem, float eat_prob) {
+    Entity* predator = ecosystem->head;
+
+    while (predator != NULL) {
+        if (predator->energy > 0) {
+            Entity* proie = ecosystem->head;
+
+            while (proie != NULL) {
+                if (proie != predator && proie->energy > 0 &&
+                    predator->x == proie->x &&
+                    predator->y == proie->y &&
                     (float)rand() / RAND_MAX < eat_prob) {
-                    ecosystem->entities[i].energy += ecosystem->entities[j].energy;
-                    ecosystem->entities[j].energy = 0;
+                    predator->energy += proie->energy;
+                    proie->energy = 0;
                 }
+
+                proie = proie->next; //we move from the current cellule to the next cellule of the liste chaine 
             }
         }
+
+        predator = predator->next;
     }
 }
 
-/* Creating predateurs */
-void reproduce_predators(Ecosystem *ecosystem, float p_reproduce) {
-    int original_size = ecosystem->size;
 
-    for (int i = 0; i < original_size; ++i) {
-        if (ecosystem->entities[i].energy > 0 && (float)rand() / RAND_MAX < p_reproduce) {
-            Entity new_predator = ecosystem->entities[i];
-            new_predator.direction = rand() % 4;
+/* Creating predateurs while using p_reproduce */
+void reproduce_predators(Ecosystem* ecosystem, float p_reproduce) {
+    Entity* current = ecosystem->head;
 
-            ecosystem->entities = (Entity *)realloc(ecosystem->entities, (++ecosystem->size) * sizeof(Entity));
-            ecosystem->entities[ecosystem->size - 1] = new_predator;
+    while (current != NULL) {
+        if (current->energy > 0 && (float)rand() / RAND_MAX < p_reproduce) {
+            Entity* new_predator = (Entity*)malloc(sizeof(Entity));
+            new_predator->x = current->x;
+            new_predator->y = current->y;
+            new_predator->energy = current->energy;  // You may adjust this based on your reproduction logic
+            new_predator->direction = rand() % 4;
+            new_predator->next = ecosystem->head;
+            ecosystem->head = new_predator;
+            ecosystem->size++;
         }
+
+        current = current->next;
     }
 }
+
 
 /* Changing the direction of an entity */
-void change_direction(Entity *entity, float change_dir_prob) {
+void change_direction(Entity* entity, float change_dir_prob) {
     entity->direction = rand() % 4;
 }
 
-int validate_input(int min, int max, const char *message, bool is_percentage) {
+int validate_input(int min, int max, const char* message, bool is_percentage) {
     char input_str[20];
     int value;
     
@@ -300,4 +349,3 @@ int validate_input(int min, int max, const char *message, bool is_percentage) {
 
     return value;
 }
-
