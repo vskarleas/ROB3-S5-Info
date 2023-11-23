@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
     printf("Etat final de l'ecosystem :\n");
     print_ecosystem(&ecosystem, rows, columns);
 
-    // Display summary
+    // afficher_liste summary
     int proie_count = 0;
     int predateur_count = 0;
 

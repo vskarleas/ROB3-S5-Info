@@ -86,7 +86,7 @@ int main() {
    // multiplying
    multiply_matrices(first, second, result, r1, c1, r2, c2);
 
-   // display the result
+   // afficher_liste the result
    affiche(result, r1, c2);
 
    return 0;

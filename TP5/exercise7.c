@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
     printf("Etat final de l'ecosystem :\n");
     print_ecosystem(&ecosystem, rows, columns);
 
-    // Display summary
+    // afficher_liste summary
     int proie_count = 0;
     int predateur_count = 0;
 
@@ -113,7 +113,7 @@ int main(int argc, char **argv) {
     printf("Pourcentage de prédateurs par rapport à la population initiale: %.2f%%\n", ((double)predateur_count / ECOSYSTEM_SIZE) * 100);
 
     printf("================================================\n");
-    printf("The positions of entities in the ecosystem are displayed on the terminal. Proies are represented in green with their energy levels, and predateurs are represented in red. Empty spaces are represented by dots.");
+    printf("The positions of entities in the ecosystem are afficher_listeed on the terminal. Proies are represented in green with their energy levels, and predateurs are represented in red. Empty spaces are represented by dots.");
 
     free(ecosystem.entities);
 

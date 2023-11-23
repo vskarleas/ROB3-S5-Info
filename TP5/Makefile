@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = exercise7 exercise7_v3
+EXECUTABLES = exercise7 exercise7_v3 exercise1 exercise2 exercise3 exercise4
 
 #############################################################################
 # definition des regles
@@ -66,6 +66,11 @@ all : $(EXECUTABLES)
 # regles explicites de compilation separee de modules
 # n'ayant pas de fichier .h ET/OU dependant d'autres modules
 
+exercise4.o : exercise4.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 exercise7.o : exercise7.c
 	@echo ""
 	@echo "---------------------------------------------"
@@ -76,9 +81,32 @@ exercise7_v3.o : exercise7_v3.c
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
+exercise1.o : exercise1.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise2.o : exercise2.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+exercise3.o : exercise3.c
+	@echo ""
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 		
 ########################################################
 # regles explicites de creation des executables
+
+exercise4 : exercise4.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
 exercise7 : exercise7.o
 	@echo ""
 	@echo "---------------------------------------------"
@@ -87,6 +115,27 @@ exercise7 : exercise7.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 exercise7_v3 : exercise7_v3.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise1 : exercise1.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise2 : exercise2.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+exercise3 : exercise3.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

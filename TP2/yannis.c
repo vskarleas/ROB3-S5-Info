@@ -10,7 +10,7 @@
 #define HIT -2
 #define BOAT 1
 
-void displayGrid(int grid[SIZE][SIZE]) {
+void afficher_listeGrid(int grid[SIZE][SIZE]) {
     printf("\n   ");
     for (int col = 0; col < SIZE; col++) {
         printf("%d ", col);
@@ -65,7 +65,7 @@ int main() {
 
     printf("=== Bataille Navale Améliorée ===\n");
     while (score > 0 && hits < BOATS) {
-        displayGrid(grid);
+        afficher_listeGrid(grid);
         printf("\nPoints restants: %d\n", score);
         printf("Coordonnées du tir (x y): ");
         scanf("%d %d", &x, &y);
@@ -86,7 +86,7 @@ int main() {
         }
     }
 
-    displayGrid(grid);
+    afficher_listeGrid(grid);
     if (hits == BOATS) {
         printf("Félicitations! Tous les bateaux ont été coulés!\n");
     } else {
