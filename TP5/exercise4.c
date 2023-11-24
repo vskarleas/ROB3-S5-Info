@@ -157,6 +157,7 @@ int main(int argc, char **argv)
     ajouter_element_liste_Point(&mylist, 1.2, 2);
     ajouter_element_liste_Point(&mylist, 5.7, 3);
     ajouter_element_liste_Point(&mylist, 1.2, 4); //a maillon with the same flottant and different ID
+    ajouter_element_liste_Point(&mylist, 5.7, 3); //a maillon with the same flottant and the same ID - works as expected
 
     // afficher_liste the elements in the list
     printf("Printing before first element's removal\n");

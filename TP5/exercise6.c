@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define OPERATION_COMPLETED -10
+
 /*---- le type maillon ----*/
 typedef struct Maillon_
 {
@@ -178,6 +180,28 @@ Liste initialize_list()
         printf("=================\n\n");
         count ++;
     }
+    
+    exit(OPERATION_COMPLETED);
+	
+}
+
+
+/* renvoie la valeur du polynoˆme pour un x particulier */
+double polynome_value(Liste *L, double x)
+{
+    Maillon *el;
+    el = L->first;
+    double res = 0;
+    
+    while(el != NULL)
+    {
+        res = pow(x, el->n)*el->c;
+        el = el->suiv;
+
+        res = res + res;
+    }
+
+    return res;
 }
 
 int main(int argc, char **argv)

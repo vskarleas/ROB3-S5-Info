@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define OPERATION_COMPLETED -10
+
 /*---- le type maillon ----*/
 typedef struct Maillon_
 {
@@ -178,6 +180,9 @@ Liste initialize_list()
         printf("=================\n\n");
         count ++;
     }
+    
+    exit(OPERATION_COMPLETED);
+	
 }
 
 int main(int argc, char **argv)
