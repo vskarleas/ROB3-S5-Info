@@ -71,7 +71,7 @@ exercise4.o : exercise4.c
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise7.o : exercise7.c
+exercise7.o : exercise7.c exercise7.h
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
@@ -81,7 +81,7 @@ exercise6.o : exercise6.c
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-exercise7_v3.o : exercise7_v3.c
+exercise7_v3.o : exercise7_v3.c exercise7_v3.h
 	@echo ""
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<

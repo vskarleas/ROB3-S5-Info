@@ -5,36 +5,13 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "exercise7_v3.h"
+
 #define ECOSYSTEM_SIZE 10
 #define SIZE_X 10
 #define SIZE_Y 10
 
-typedef struct Entity
-{
-    int x;
-    int y;
-    int energy; // for energy lower than 0 we have a predateur
-    int direction;
-    struct Entity *next;
-} Entity;
-
-typedef struct
-{
-    Entity *head;
-    int size;
-} Ecosystem;
-
-void initialize_ecosystem(Ecosystem *ecosystem, int size);
-void print_ecosystem(Ecosystem *ecosystem, int rows, int columns);
-void move_entities(Ecosystem *ecosystem, float change_dir_prob);
-void reproduce_entities(Ecosystem *ecosystem, float p_reproduce);
-void update_energy(Ecosystem *ecosystem, int d_proie, int d_predateur);
-void predator_eat_proie(Ecosystem *ecosystem, float eat_prob);
-void reproduce_predators(Ecosystem *ecosystem, float p_reproduce);
-void change_direction(Entity *entity, float change_dir_prob);
-
-int validate_input(int min, int max, const char *message, bool is_percentage);
-
+//main logic
 int main(int argc, char **argv)
 {
     srand(time(NULL));
@@ -193,7 +170,7 @@ void print_ecosystem(Ecosystem *ecosystem, int rows, int columns)
                     }
                     else
                     {
-                        printf("\033[1;31mP%d\033[1;0m  ", current->energy); // it lost energy
+                        printf("\033[1;37m .  \033[1;0m"); // it lost energy
                     }
                     entity_found = 1;
                     break;
@@ -268,7 +245,7 @@ void reproduce_entities(Ecosystem *ecosystem, float p_reproduce)
     }
 }
 
-/* Scans the whole ecosystem and updates the energy according to the values of d_predateur and d_proie */
+
 /* Scans the whole ecosystem and updates the energy according to the values of d_predateur and d_proie */
 void update_energy(Ecosystem *ecosystem, int d_proie, int d_predateur)
 {

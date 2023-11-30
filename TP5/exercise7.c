@@ -5,35 +5,11 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "exercise7.h"
+
 #define ECOSYSTEM_SIZE 10
 #define SIZE_X 10
 #define SIZE_Y 10
-
-typedef struct
-{
-    int x;
-    int y;
-    int energy; // for energy lower than 0 we have a predateur
-    int direction;
-} Entity;
-
-typedef struct
-{
-    Entity *entities;
-    int size;
-} Ecosystem;
-
-/* Signatures of functions - method seen in Amphi */
-void initialize_ecosystem(Ecosystem *ecosystem, int size);
-void print_ecosystem(Ecosystem *ecosystem, int rows, int collumns);
-void move_entities(Ecosystem *ecosystem, float change_dir_prob);
-void reproduce_entities(Ecosystem *ecosystem, float p_reproduce);
-void update_energy(Ecosystem *ecosystem, int d_proie, int d_predateur);
-void predator_eat_proie(Ecosystem *ecosystem, float eat_prob);
-void reproduce_predators(Ecosystem *ecosystem, float p_reproduce);
-void change_direction(Entity *entity, float change_dir_prob);
-
-int validate_input(int min, int max, const char *message, bool is_percentage);
 
 /* Ecosystem's main loop happens on the main program */
 int main(int argc, char **argv)
