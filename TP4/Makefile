@@ -40,7 +40,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = exercise1 exercise2 exercise3 exercise4 exercise5 test exercise7 exercise6 exercise3_v2 test2
+EXECUTABLES = exercise1 exercise2 exercise3 exercise4 exercise5 test exercise7 exercise6 exercise3_v2 test2 
 
 #############################################################################
 # definition des regles
