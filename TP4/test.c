@@ -18,8 +18,8 @@ printf("%p\n", & *ptr);
 printf("%p\n", kr); //αυτό κάνουμε συνήθως
 printf("%p\n", &i);
 
-printf("%d\n", i);
 printf("%d\n", *kr);
+printf("%d\n", i);
 
 char string[10];
 printf("Input a string: ");
